@@ -16,4 +16,10 @@
       </Compile>
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Hotel.BLL\obj\Hotel.BLL.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="Hotel.BLL\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="Hotel.BLL\obj\project.packagespec.json" />
+    </ItemGroup>
+
 </Project>
