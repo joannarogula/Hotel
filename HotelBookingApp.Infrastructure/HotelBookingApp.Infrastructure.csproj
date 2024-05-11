@@ -10,4 +10,8 @@
       <ProjectReference Include="..\WebApplication1.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0-preview.3.24172.4" />
+    </ItemGroup>
+
 </Project>
