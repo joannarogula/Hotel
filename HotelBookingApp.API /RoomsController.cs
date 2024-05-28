@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using HotelBookingApp.Domain.Interfaces; 
 using HotelBookingApp.Domain.Models;
 using HotelBookingApp.Domain.Services;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using MySql.Data.MySqlClient;
 
 namespace HotelBookingApp.API.Controllers
 {
@@ -78,3 +81,9 @@ namespace HotelBookingApp.API.Controllers
     
     
 }
+
+
+    
+
+
+
