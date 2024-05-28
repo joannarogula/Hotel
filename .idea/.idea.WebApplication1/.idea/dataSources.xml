@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mysql://localhost:3306/HOTEL</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="HOTEL@localhost [2]" uuid="2538a2e6-86ee-403a-8b62-e5fd14fcaed9">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/HOTEL</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

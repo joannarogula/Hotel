@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>title</title>
+    <style>
+        .date-inputs {
+            margin-top: 20px;
+        }
+
+        .date-inputs label {
+            margin-right: 10px;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const startDateInput = document.getElementById("start-date");
+            const endDateInput = document.getElementById("end-date");
+
+            const today = new Date();
+            const tomorrow = new Date();
+            tomorrow.setDate(today.getDate() + 1);
+
+            // Formatowanie daty na YYYY-MM-DD
+            const formatDateString = (date) => {
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                return `${year}-${month}-${day}`;
+            };
+
+            const todayString = formatDateString(today);
+            const tomorrowString = formatDateString(tomorrow);
+
+            // Ustawienie minimalnych dat
+            startDateInput.min = todayString;
+            endDateInput.min = tomorrowString;
+
+            // Aktualizacja minimalnej daty zakończenia pobytu po wyborze daty rozpoczęcia
+            startDateInput.addEventListener("change", function() {
+                const startDate = new Date(startDateInput.value);
+                startDate.setDate(startDate.getDate() + 1);
+                endDateInput.min = formatDateString(startDate);
+            });
+        });
+    </script>
+</head>
+<body>
+<div>
+    <h1>Wybierz swój termin pobytu a następnie sprawdź dostępne pokoje</h1>
+    <div class="date-inputs">
+        <label for="start-date">Początek pobytu:</label>
+        <input type="date" id="start-date" name="start-date">
+        <label for="end-date">Koniec pobytu:</label>
+        <input type="date" id="end-date" name="end-date">
+    </div>
+</div>
+</body>
+</html>

@@ -9,3 +9,4 @@ public interface IRoomRepository
     Task UpdateRoomAsync(Room room);
     Task DeleteRoomAsync(int roomId);
 }
+

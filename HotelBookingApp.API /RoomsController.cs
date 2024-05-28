@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using HotelBookingApp.Domain.Interfaces; 
 using HotelBookingApp.Domain.Models;
+using HotelBookingApp.Domain.Services;
 
 namespace HotelBookingApp.API.Controllers
 {
@@ -31,14 +32,14 @@ namespace HotelBookingApp.API.Controllers
             }
 
             await _roomService.CreateRoomAsync(room);
-            return CreatedAtAction(nameof(GetRoomById), new { id = room.Id }, room);
+            return CreatedAtAction(nameof(GetRoomById), new { id = room.RoomId }, room);
 
         }
         
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateRoom(int id, [FromBody] Room room)
         {
-            if (room == null || room.Id != id)
+            if (room == null || room.RoomId != id)
             {
                 return BadRequest("Room data is invalid.");
             }
