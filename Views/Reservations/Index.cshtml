@@ -47,12 +47,15 @@
 <body>
 <div>
     <h1>Wybierz swój termin pobytu a następnie sprawdź dostępne pokoje</h1>
-    <div class="date-inputs">
-        <label for="start-date">Początek pobytu:</label>
-        <input type="date" id="start-date" name="start-date">
-        <label for="end-date">Koniec pobytu:</label>
-        <input type="date" id="end-date" name="end-date">
-    </div>
+    <form method="get" action="/Rooms/AvailableRooms">
+        <div class="date-inputs">
+            <label for="start-date">Początek pobytu:</label>
+            <input type="date" id="start-date" name="start-date" required>
+            <label for="end-date">Koniec pobytu:</label>
+            <input type="date" id="end-date" name="end-date" required>
+        </div>
+        <button type="submit">Sprawdź dostępność</button>
+    </form>
 </div>
 </body>
 </html>

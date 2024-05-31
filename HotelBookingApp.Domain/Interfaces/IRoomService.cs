@@ -22,11 +22,20 @@ public class RoomService : IRoomService
         _roomRepository = roomRepository;
     }
 
+    // public async Task<IEnumerable<Room>> GetAvailableRoomsAsync(DateTime startDate, DateTime endDate)
+    // {
+    //     // Logika filtrująca pokoje na podstawie dostępności
+    //     var rooms = await _roomRepository.GetAllRoomsAsync();
+    //     return rooms.Where(r => r.IsAvailable && NoBookingOverlap(r, startDate, endDate));
+    // }
+    
     public async Task<IEnumerable<Room>> GetAvailableRoomsAsync(DateTime startDate, DateTime endDate)
     {
-        // Logika filtrująca pokoje na podstawie dostępności
-        var rooms = await _roomRepository.GetAllRoomsAsync();
-        return rooms.Where(r => r.IsAvailable && NoBookingOverlap(r, startDate, endDate));
+        var allRooms = await _roomRepository.GetAllRoomsAsync();
+        var reservedRooms = await _roomRepository.GetReservedRoomsAsync(startDate, endDate);
+
+        var availableRooms = allRooms.Where(room => !reservedRooms.Any(reserved => reserved.RoomId == room.RoomId));
+        return availableRooms;
     }
     
     public async Task<IEnumerable<Room>> GetAllRoomsAsync()

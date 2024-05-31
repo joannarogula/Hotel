@@ -120,6 +120,40 @@ public class RoomRepository : IRoomRepository
         }
         return rooms;
     }
+    
+    public async Task<IEnumerable<Room>> GetReservedRoomsAsync(DateTime startDate, DateTime endDate)
+    {
+        var reservedRooms = new List<Room>();
+        var query = @"
+            SELECT r.RoomId, r.RoomNumber, r.Capacity 
+            FROM Rooms r
+            INNER JOIN Reservations res ON r.RoomId = res.RoomId
+            WHERE res.StartDate < @EndDate AND res.EndDate > @StartDate";
+
+        using (var connection = new MySqlConnection(_connectionString))
+        using (var command = new MySqlCommand(query, connection))
+        {
+            command.Parameters.AddWithValue("@StartDate", startDate);
+            command.Parameters.AddWithValue("@EndDate", endDate);
+
+            await connection.OpenAsync();
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                while (await reader.ReadAsync())
+                {
+                    var room = new Room
+                    {
+                        RoomId = reader.GetInt32(reader.GetOrdinal("RoomId")),
+                        Number = reader.GetString(reader.GetOrdinal("RoomNumber")),
+                        Capacity = reader.GetInt32(reader.GetOrdinal("Capacity"))
+                    };
+                    reservedRooms.Add(room);
+                }
+            }
+        }
+
+        return reservedRooms;
+    }
 
     public async Task AddRoomAsync(Room room)
     {

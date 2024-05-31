@@ -74,6 +74,18 @@ namespace HotelBookingApp.API.Controllers
             }
             return Ok(room);
         }
+        
+        [HttpGet("AvailableRooms")]
+        public async Task<IActionResult> GetAvailableRooms([FromQuery] DateTime startDate, [FromQuery] DateTime endDate)
+        {
+            if (startDate >= endDate)
+            {
+                return BadRequest("Data końca pobytu musi być późniejsza niż data początku pobytu.");
+            }
+
+            var availableRooms = await _roomService.GetAvailableRoomsAsync(startDate, endDate);
+            return Ok(availableRooms);
+        }
 
         
 
