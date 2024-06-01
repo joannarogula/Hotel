@@ -65,7 +65,7 @@ public class RoomRepository : IRoomRepository
 
     public RoomRepository(IConfiguration configuration)
     {
-        _connectionString = configuration.GetConnectionString("DefaultConnection");
+        _connectionString = configuration.GetConnectionString("NewConnection");
     }
 
     public async Task<Room> GetRoomByIdAsync(int roomId)

@@ -12,7 +12,7 @@ namespace HotelBookingApp.API.Controllers
     [Route("[controller]")]
     public class RoomsController : ControllerBase
     {
-        private readonly IRoomService _roomService;
+        private IRoomService _roomService;
 
         public RoomsController(IRoomService roomService)
         {
@@ -86,11 +86,7 @@ namespace HotelBookingApp.API.Controllers
             var availableRooms = await _roomService.GetAvailableRoomsAsync(startDate, endDate);
             return Ok(availableRooms);
         }
-
-        
-
     }
-    
     
 }
 

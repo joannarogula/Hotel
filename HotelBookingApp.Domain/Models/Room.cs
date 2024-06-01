@@ -8,12 +8,14 @@ public class Room
     public int Capacity { get; set; }
     public bool IsAvailable { get; set; }
     
-    // public Room(int roomId, string number, string description, int capacity, bool isAvailable)
-    // {
-    //     RoomId = roomId;
-    //     Number = number;
-    //     Description = description;
-    //     Capacity = capacity;
-    //     IsAvailable = isAvailable;
-    // }
+    
 }
+
+// public Room(int roomId, string number, string description, int capacity, bool isAvailable)
+// {
+//     RoomId = roomId;
+//     Number = number;
+//     Description = description;
+//     Capacity = capacity;
+//     IsAvailable = isAvailable;
+// }

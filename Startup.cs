@@ -6,6 +6,8 @@ using HotelBookingApp.Domain.Interfaces;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.OpenApi.Models;
+using HotelBookingApp.API.Controllers;
+using MySql.Data.MySqlClient;
 
 
 
@@ -20,14 +22,17 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
+        services.AddControllers();
+        Console.WriteLine("\n WORKS!!!!! \n");
         services.AddScoped<IRoomService, RoomService>();
         services.AddScoped<IBookingService, BookingService>();
         services.AddScoped<IUserService, UserService>();
-        services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-        services.AddControllers();
+        services.AddMvc()
+            .AddControllersAsServices(); 
+        
         services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" }); });
+        
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
